@@ -25,6 +25,8 @@ jobs:
         shell: bash
         run: |
           git fetch --tags
+          git fetch --deepen=100 origin
+
           version="$(git describe --tags)"
           echo "::set-output name=version::${version}"
 
