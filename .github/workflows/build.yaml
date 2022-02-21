@@ -20,11 +20,20 @@ jobs:
         run: |
           docker build -t build:local .
 
-      - name: Push image
+      - name: Get version
+        id: version
         shell: bash
         run: |
+          version="$(git describe --tags)"
+          echo "::set-output name=version::${version}"
+
+      - name: Push image
+        shell: bash
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
           repo_lowercase="$(tr '[[:upper:]]' '[[:lower:]]' <<<"${GITHUB_REPOSITORY}")"
-          target_tag="ghcr.io/${repo_lowercase}/service:latest"
+          target_tag="ghcr.io/${repo_lowercase}/service:${VERSION}"
 
           docker tag build:local "${target_tag}"
           docker push "${target_tag}"
