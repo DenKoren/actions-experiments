@@ -7,6 +7,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: login to github docker
         uses: docker/login-action@v1
@@ -24,9 +26,6 @@ jobs:
         id: version
         shell: bash
         run: |
-          git fetch --tags
-          git fetch --deepen=100 origin
-
           version="$(git describe --tags)"
           echo "::set-output name=version::${version}"
 
@@ -36,7 +35,8 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           repo_lowercase="$(tr '[[:upper:]]' '[[:lower:]]' <<<"${GITHUB_REPOSITORY}")"
-          target_tag="ghcr.io/${repo_lowercase}/service:${VERSION}"
+          target_tag_version="ghcr.io/${repo_lowercase}/service:${VERSION}"
+          target_tag_latest="ghcr.io/${repo_lowercase}/service:latest"
 
-          docker tag build:local "${target_tag}"
-          docker push "${target_tag}"
+          docker tag build:local "${target_tag_version}" "${target_tag_latest}"
+          docker push "${target_tag_version}" "${target_tag_latest}"
