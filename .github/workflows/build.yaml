@@ -1,0 +1,29 @@
+name: learn-github-actions
+
+on: [push]
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: login to github docker
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image
+        shell: bash
+        run: |
+          docker build -t build:local .
+
+      - name: Push image
+        shell: bash
+        run: |
+          target_tag="ghcr.io/${GITHUB_REPOSITORY}/service:latest"
+
+          docker tag build:local "${target_tag}"
+          docker push "${target_tag}"
