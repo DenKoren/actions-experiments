@@ -23,7 +23,8 @@ jobs:
       - name: Push image
         shell: bash
         run: |
-          target_tag="ghcr.io/${GITHUB_REPOSITORY}/service:latest"
+          repo_lowercase="$(tr '[[:upper:]]' '[[:lower:]]' <<<"${GITHUB_REPOSITORY}")"
+          target_tag="ghcr.io/${repo_lowercase}/service:latest"
 
           docker tag build:local "${target_tag}"
           docker push "${target_tag}"
