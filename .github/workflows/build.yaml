@@ -24,6 +24,7 @@ jobs:
         id: version
         shell: bash
         run: |
+          git fetch --tags
           version="$(git describe --tags)"
           echo "::set-output name=version::${version}"
 
