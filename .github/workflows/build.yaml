@@ -39,5 +39,7 @@ jobs:
           target_tag_latest="ghcr.io/${repo_lowercase}/service:latest"
 
           docker tag build:local "${target_tag_version}"
+          docker push "${target_tag_version}"
+
           docker tag build:local "${target_tag_latest}"
-          docker push "${target_tag_version}" "${target_tag_latest}"
+          docker push "${target_tag_latest}"
