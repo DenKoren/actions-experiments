@@ -24,7 +24,10 @@ jobs:
       - name: Build image
         shell: bash
         run: |
-          docker build -t build:local .
+          docker build \
+            --file docker/terraform/Dockerfile \
+            -t build:local \
+            .
 
       - name: Get version
         id: version

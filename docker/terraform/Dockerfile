@@ -5,3 +5,8 @@ COPY .terraform.lock.hcl .
 
 RUN terraform init
 RUN rm main.tf .terraform.lock.hcl
+
+USER root
+COPY docker/terraform/action.sh /action.sh
+RUN chmod +x /action.sh
+USER nonroot
