@@ -12,4 +12,4 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: denkoren/actions-experiments/actions/terraform@v1
+      - uses: denkoren/actions-experiments/actions/terraform@main
