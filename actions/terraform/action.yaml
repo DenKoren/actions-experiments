@@ -14,5 +14,6 @@ outputs:
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/denkoren/actions-experiments/terraform:latest'
+  entrypoint: '/action.sh'
   args:
-    - pwd
+    - -help
