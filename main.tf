@@ -24,10 +24,14 @@ resource "aws_ecs_task_definition" "service-task" {
   container_definitions = jsonencode(
     [
       {
-        "name": "service",
-        "image": "ghcr.io/denkoren/actions-experiments/service:latest",
-        "portMappings": [ { "containerPort": 80,
-                            "hostPort": 80 } ]
+        name : "service",
+        image : "ghcr.io/denkoren/actions-experiments/service:latest",
+        portMappings : [
+          {
+            containerPort: 80,
+            hostPort: 80
+          }
+        ]
       }
     ]
   )
