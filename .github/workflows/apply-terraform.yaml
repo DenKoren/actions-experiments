@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  build-docker-image:
+  apply-terraform:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,4 +12,4 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ${{ github.repository }}/actions/terraform@v1
+      - uses: denkoren/actions-experiments/actions/terraform@v1
