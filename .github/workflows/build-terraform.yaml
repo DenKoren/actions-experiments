@@ -1,4 +1,4 @@
-name: learn-github-actions
+name: Build terraform image
 
 on:
   push:

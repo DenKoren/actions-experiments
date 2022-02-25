@@ -1,4 +1,4 @@
-name: learn-github-actions
+name: Apply terraform
 
 on:
   workflow_dispatch: {}

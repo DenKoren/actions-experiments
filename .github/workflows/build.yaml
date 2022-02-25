@@ -1,4 +1,4 @@
-name: learn-github-actions
+name: Build main image
 
 on:
   push:
