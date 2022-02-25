@@ -1,0 +1,15 @@
+name: learn-github-actions
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: ${{ github.repository }}/actions/terraform@v1
