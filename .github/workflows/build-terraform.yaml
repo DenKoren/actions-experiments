@@ -3,7 +3,7 @@ name: learn-github-actions
 on:
   push:
     paths:
-      - 'Dockerfile'
+      - 'docker/terraform/**'
 
 jobs:
   build-docker-image:
@@ -39,8 +39,8 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           repo_lowercase="$(tr '[[:upper:]]' '[[:lower:]]' <<<"${GITHUB_REPOSITORY}")"
-          target_tag_version="ghcr.io/${repo_lowercase}/service:${VERSION}"
-          target_tag_latest="ghcr.io/${repo_lowercase}/service:latest"
+          target_tag_version="ghcr.io/${repo_lowercase}/terraform:${VERSION}"
+          target_tag_latest="ghcr.io/${repo_lowercase}/terraform:latest"
 
           docker tag build:local "${target_tag_version}"
           docker push "${target_tag_version}"
