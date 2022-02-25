@@ -16,4 +16,5 @@ runs:
   image: 'docker://ghcr.io/denkoren/actions-experiments/terraform:latest'
   entrypoint: '/action.sh'
   args:
-    - -help
+    - apply
+    - -auto-approve
