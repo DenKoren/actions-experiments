@@ -17,7 +17,7 @@ jobs:
     needs:
       - init
 
-    uses: milaboratory/github-ci/.github/workflows/docker-github.yaml@v2-beta
+    uses: milaboratory/github-ci/.github/workflows/docker-github.yaml@v2-split
     with:
       product-name: 'Docker'
       dockerfile: 'Dockerfile'
