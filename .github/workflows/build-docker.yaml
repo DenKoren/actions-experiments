@@ -21,7 +21,7 @@ jobs:
     with:
       product-name: 'Docker'
       dockerfile: 'Dockerfile'
-      push-dev-targets: ${{ github.repository }}/hello-world
+      push-dev-targets: denkoren/actions-experiments/hello-world
       push-dev-versions: true
       push-branch-latest: true
       push-release-latest: true
