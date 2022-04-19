@@ -1,0 +1,33 @@
+name: "[W] docker-github"
+
+on:
+  push:
+    tags: [ '*' ]
+    branches: [ 'master' ]
+
+  workflow_dispatch:
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: milaboratory/github-ci/actions/context/init@v2
+
+  run:
+    needs:
+      - init
+
+    uses: milaboratory/github-ci/.github/workflows/docker-github.yaml@v2-beta
+    with:
+      product-name: 'Docker'
+      dockerfile: 'Dockerfile'
+      push-dev-targets: ${{ github.repository }}/hello-world
+      push-dev-versions: true
+      push-branch-latest: true
+      push-release-latest: true
+      push-release-latest-major: true
+      notify-telegram: false
+
+    secrets:
+      DOCKER_REGISTRY_USER: ${{ github.actor }}
+      DOCKER_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
